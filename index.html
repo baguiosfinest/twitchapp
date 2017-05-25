@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.png">
+
+    <title>FCC - Twitch</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron:900" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div id="wrapper">
+
+    <div class="container-fluid">
+      <header id="header">
+        <div id="logo" class="text-center">
+          <svg height="32px" version="1.1" viewBox="0 0 94 32" width="94px" x="0px" y="0px" class="svg-logo_twitch">
+            <path clip-rule="evenodd" d="M88,5h-6V0h-9l-6,5h-5.5L59,7.5V5h-5V0H36v5H16l-5-5H0v22l5,5.25L14,32h6v-1.5l3,1.5h12l2-3l1,3h7v-3l3,3h8l0.5-3l2.5,3h10l3-3v3h4l3-3v3h7l7-6V10L88,5z M13,13H8v6h5v6H6l-4-4V2h6v5h5V13z M36,21.5L32.5,25H15V7h6v12h2V7h6v12h2V7h5V21.5z M44,25h-6V7h6V25z M44,5h-6V2h6V5z M57,13h-5v6h5v6h-7l-4-4V2h6v5h5V13z M72,13h-7v6h7v6h-9l-4-4V11l4-4h9V13z M91,25h-6V13h-5v12h-6V2h6v5h7l4,4V25z" fill-rule="evenodd"></path>
+          </svg>
+          <h1>Streamers</h1>
+        </div><!--// end #logo -->
+      </header><!--// end #header -->
+      <nav id="topnav" class="clearfix">
+        <ul>
+          <li class="navall active" data-stat="all"><a href="#">All</a></li>
+          <li class="navon" data-stat="on"><a href="#">Online</a></li>
+          <li class="navoff" data-stat="off"><a href="#">Offline</a></li>
+        </ul>
+      </nav><!--// end #topnav -->
+      <div id="search">
+        <input type="text" class="form-control" id="tags" placeholder="Search..." />
+      </div><!--// end #search -->
+      <div id="main" class="load">
+        <div class="loader">
+          <div class="sk-circle">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
+          </div>
+        </div><!--// end .loader -->
+
+
+      </div><!--// end #main -->
+
+    </div><!-- /.container -->
+
+    <footer class="footer">
+      <div class="container-fluid">
+            <span class="text-muted text-center">&copy;Copyright 2017 Sonny Tambiac</span>
+      </div>
+    </footer><!--// end .footer -->
+
+  </div><!--// end #wrapper -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var tags = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
+
+        $("#topnav li a").on("click", function(e){
+          e.preventDefault();
+          $("#topnav li").removeClass("active");
+          $(this).parent().addClass("active");
+
+          if($(this).parent().data('stat') == "on"){
+            $(".stream").hide();
+            $(".stream.online").show();
+
+          }else if($(this).parent().data('stat') == "off"){
+            $(".stream").hide();
+            $(".stream.offline").show();
+
+          }else{
+            $(".stream").show();
+
+          }
+        });
+
+        $("#tags").autocomplete({
+          source: tags,
+          select: function(event, ui){
+            //console.log(ui.item.value);
+            $(".stream").hide();
+            /*if($(".stream").data("sname") === ui.item.value ){
+              $(this).show();
+            }*/
+
+            $(".stream").filter(function(){
+              return $(this).data("sname") === ui.item.value;
+            }).show();
+
+          }
+        });
+
+
+
+      });
+    </script>
+    <script src="js/scripts.js"></script>
+
+
+  </body>
+</html>
